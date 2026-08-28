@@ -1,0 +1,27 @@
+# Deploy no Render (gratuito, HTTPS, endereço fixo)
+# Uso: suba este repo no GitHub e em render.com crie um "Web Service"
+# apontando para ele. As variáveis de ambiente são preenchidas no dashboard
+# (nunca commit o .env).
+services:
+  - type: web
+    name: descola-perdizes
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_DOMAIN
+        value: alunopueri.com.br
+      - key: DEV_LOGIN
+        value: "false"
+      # Preencher no dashboard do Render (sync: false = pedir manualmente):
+      - key: BASE_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
